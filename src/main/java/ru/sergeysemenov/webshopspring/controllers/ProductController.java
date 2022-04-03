@@ -1,6 +1,8 @@
 package ru.sergeysemenov.webshopspring.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.sergeysemenov.webshopspring.dtos.CreateNewProductDto;
@@ -12,10 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/products")
-@RequiredArgsConstructor
+
 public class ProductController {
-    private final ProductService productService;
-    private Cart cart;
+    private ProductService productService;
+
+    @Autowired
+    public void setProductService(ProductService productService){
+        this.productService = productService;
+    }
+
 
     @GetMapping
     public List<Product> getAllProducts() {
@@ -33,8 +40,5 @@ public class ProductController {
         productService.deleteById(id);
     }
 
-    @PostMapping("/{id}")
-    public void addProduct(@PathVariable Long id){
-        cart.getProducts().add(productService.addProductById(id));
-    }
+
 }

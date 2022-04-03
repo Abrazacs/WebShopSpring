@@ -41,6 +41,7 @@
             <td>
                 <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button>
             </td>
+
         </tr>
         </tbody>
     </table>
@@ -62,6 +63,23 @@
     <hr>
     <p></p>
     <h3>Корзина</h3>
+    <table class="table table-hover">
+
+        <thead>
+        <td>ID</td>
+        <td>Название</td>
+        <td>Цена</td>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="prod in productsInCart">
+            <td>{{prod.id}}</td>
+            <td>{{prod.title}}</td>
+            <td>{{prod.price}}</td>
+        </tr>
+        </tbody>
+
+    </table>
 </div>
 
 </body>
