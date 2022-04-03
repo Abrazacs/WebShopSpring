@@ -29,8 +29,7 @@ angular.module('market', []).controller('indexController', function ($scope, $ht
     }
 
     $scope.addProduct = function (id){
-        $http.post('http://localhost:8189/market/api/v1/cart/'+id)
-            console.log(id)
+        $http.get('http://localhost:8189/market/api/v1/cart/'+id)
             .then(function (response){
                 $scope.fillTable();
             });

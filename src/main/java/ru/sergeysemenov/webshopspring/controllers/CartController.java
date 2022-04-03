@@ -31,7 +31,7 @@ public class CartController {
         return cart.getProductsList();
     }
 
-    @PostMapping("/api/v1/cart/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void addProductInCart(@PathVariable Long id){
         cart.getProductsList().add(productService.findProductById(id));
