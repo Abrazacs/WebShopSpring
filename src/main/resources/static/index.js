@@ -3,11 +3,12 @@ angular.module('market', []).controller('indexController', function ($scope, $ht
         $http.get('http://localhost:8189/market/api/v1/products')
             .then(function (response) {
                 $scope.products = response.data;
-                // console.log(response);
+                console.log(response);
             });
         $http.get('http://localhost:8189/market/api/v1/cart')
             .then(function (response){
                 $scope.productsInCart = response.data;
+                console.log(response);
             });
     }
 
@@ -29,6 +30,7 @@ angular.module('market', []).controller('indexController', function ($scope, $ht
 
     $scope.addProduct = function (id){
         $http.post('http://localhost:8189/market/api/v1/cart/'+id)
+            console.log(id)
             .then(function (response){
                 $scope.fillTable();
             });
