@@ -17,8 +17,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
     private ProductService productService;
+    private Cart cart;
 
 
+    @Autowired
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     @GetMapping
     public List<Product> getAllProducts() {
@@ -36,6 +41,16 @@ public class ProductController {
         productService.deleteById(id);
     }
 
+    @GetMapping("/cart")
+    public List<Product> getProductsInCart(){
+        return cart.getProductsList();
+    }
+
+    @GetMapping("/cart/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void addProductIntoCart(@PathVariable Long id){
+        cart.getProductsList().add(productService.findProductById(id));
+    }
 
 
 }
